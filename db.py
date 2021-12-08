@@ -92,6 +92,9 @@ def main():
         option = str(input('[*] Name of the table to delete: '))
         db.delete_table(option)
 
+# Insert entry in an existing table
+
+
 # Show database option
     if ch == 5:
         output = open('database.json', 'r')
