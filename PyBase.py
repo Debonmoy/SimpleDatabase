@@ -1,4 +1,8 @@
 # Simple Database made in Python
+# PyBase Version 1.0.1
+
+# Note: There is a bug in delete entry feature, will be fixing it asap.
+
 
 # Importing the modules
 import json
@@ -34,7 +38,7 @@ class PyBase:
             return True
         return False
 
-# Inserting a table in database function
+# Inserting a data into a table in database function
     def insert(self, table_name: Union[str, int, float], key: Union[str, int, float], value:Any) -> None:
         if not table_name in self.__db.keys():
             self.__db[table_name] = {}
@@ -93,8 +97,33 @@ def main():
         db.delete_table(option)
 
 # Insert entry in an existing table
+    if ch == 3:
+        name = str(input('[*] Enter the name of the table: '))
+        # Print out the contents
+        output = open('database.json', 'r')
+        json_output = json.load(output)
+        final_output = json.dumps(json_output, indent=4)
+        output.close()
+        print(final_output)
+        # Add the new data
+        no = int(input('[*] Enter Sl. No.: '))
+        data = str(input('[*] Enter your data: '))
+        db.insert(name, no, data)
+        print('\nYour data was added!')
 
-
+# Delete entry in an existing table
+    if ch == 4:
+        name = str(input('[*] Enter the name of the table: '))
+        # Print out the contents
+        output = open('database.json', 'r')
+        json_output = json.load(output)
+        final_output = json.dumps(json_output, indent=4)
+        output.close()
+        print(final_output)
+        # Delete the data
+        no = int(input('[*] Enter the index of the data to be deleted: '))
+        data = str(input('[*] Enter the data to be deleted: '))
+        db.delete(name, no, data)
 # Show database option
     if ch == 5:
         output = open('database.json', 'r')
